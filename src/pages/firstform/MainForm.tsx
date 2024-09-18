@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useAuth, useUser } from "@clerk/clerk-react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
+import { useToast } from "@/hooks/use-toast"
 
 const formSchema = z.object({
     razonSocial: z.string().min(2).max(60),
@@ -39,6 +40,7 @@ export const MainForm = () => {
 
     const { userId, isLoaded } = useAuth()
     const { id } = useParams();
+    const { toast } = useToast()
     const data = useUser();
     console.log(data)
     const navigate = useNavigate()
@@ -78,10 +80,19 @@ export const MainForm = () => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         if(!values.exportacion && !values.importacion){
-          alert('Seleccione al menos importación o exportación')
+          toast({
+            variant:"destructive",
+            title: "Error",
+            description: "Selecciona al menos importación o exportación",
+          })
           }else{
             
             console.log(values)
+            toast({
+              variant:"success",
+              title: "Información almacenada",
+              description: "Puede abandonar la página",
+            })
             //TODO: SEND CLAD ID
             /* const response = await fetch('http://localhost:3000/generate-doc', {
               method: 'POST',

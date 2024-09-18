@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import './App.css'
+import { Toaster } from './components/ui/toaster'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -21,16 +22,17 @@ function App() {
           <div>
             <p>Clad Logistics</p>
           </div>
-          <SignedIn>
+          {/* <SignedIn>
             <UserButton />
           </SignedIn>
           <SignedOut>
             <Link to="/sign-in">Iniciar sesión</Link>
-          </SignedOut>
+          </SignedOut> */}
         </div>
       </header>
   <main>
     <Outlet/>
+    <Toaster />
   </main>
   </ClerkProvider>
   

@@ -11,14 +11,14 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      { path: "/", element: <IndexPage /> },
+     /*  { path: "/", element: <IndexPage /> },
       { path: "/sign-in", element: <SignIn appearance={{
         elements: {
           footer: {
             display: 'none',
           },
         },
-      }} /> },
+      }} /> }, */
       { path: "/form/:id", element: <MainForm /> },
     ]
   }
