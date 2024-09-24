@@ -4,8 +4,6 @@ import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainForm } from './pages/firstform/MainForm.tsx'
-import IndexPage from './routes/index.tsx'
-import { SignIn } from '@clerk/clerk-react'
 
 const router = createBrowserRouter([
   {

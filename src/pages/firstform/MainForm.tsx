@@ -33,7 +33,7 @@ const formSchema = z.object({
     regimen: z.string().min(5),
     ICA: z.boolean().default(false), 
     actividadEconomica: z.string().min(4).max(5),
-    codPostal: z.string().min(5),
+    codigoPostal: z.string().min(5),
   })
 
 export const MainForm = () => {
@@ -66,7 +66,7 @@ export const MainForm = () => {
           correo: "",
           regimen: "",
           ICA: false ,
-          codPostal: "",
+          codigoPostal: "",
          actividadEconomica: "",
           importacion: false,
           exportacion: false
@@ -87,22 +87,29 @@ export const MainForm = () => {
           })
           }else{
             
-            console.log(values)
+           const responseValues = {...values};
+           // @ts-expect-error switch types
+           responseValues.importacion = new Boolean(responseValues.importacion).toString();
+           // @ts-expect-error switch types
+           responseValues.exportacion = new Boolean(responseValues.exportacion).toString();
+           // @ts-expect-error switch types
+           responseValues.ICA  = new Boolean(responseValues.ICA).toString();
+
             toast({
               variant:"success",
               title: "Información almacenada",
               description: "Puede abandonar la página",
             })
             //TODO: SEND CLAD ID
-            /* const response = await fetch('http://localhost:3000/generate-doc', {
+            const response = await fetch(`https://tf-flow-70f13740be3b.herokuapp.com/api/client/66f29c225229ba5d6f7444fe`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify(values)
+              body: JSON.stringify(responseValues)
             });
             const result = await response.json();
-            console.log(result) */
+            console.log(result)
         }
       }
     
@@ -275,7 +282,7 @@ export const MainForm = () => {
         />
       <FormField
           control={form.control}
-          name="codPostal"
+          name="codigoPostal"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Código Postal</FormLabel>

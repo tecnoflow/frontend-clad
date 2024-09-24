@@ -4,6 +4,7 @@ import { defineConfig } from "vite"
  
 export default defineConfig({
   plugins: [react()],
+  base: 'https://tecnoflow.github.io/frontend-clad',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
