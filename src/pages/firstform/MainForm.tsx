@@ -42,7 +42,6 @@ export const MainForm = () => {
     const { userId, isLoaded } = useAuth()
     const { id } = useParams();
     const { toast } = useToast()
-    const data = useUser();
     const navigate = useNavigate()
 
     useEffect(() => {
