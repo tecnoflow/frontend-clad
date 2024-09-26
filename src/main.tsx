@@ -4,15 +4,18 @@ import App from './App.tsx'
 import './index.css'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import { MainForm } from './pages/firstform/MainForm.tsx'
+import Clients from './pages/business-admin/Clients.tsx'
+import { SignIn } from './pages/auth/SignIn.tsx'
 
 
 const router = createHashRouter([
   {
     element: <App />,
     children: [
-      { path: "/", element:  <MainForm /> },
-      { path: "/sign-in", element:  <MainForm /> },
+      { path: "/sign-in", element:  <SignIn /> },
       { path: "/form/:id", element: <MainForm /> },
+      { path: "/clients", element:  <Clients/> },
+      { path: "/", element:  <Clients/> },
     ]
   }
 ])

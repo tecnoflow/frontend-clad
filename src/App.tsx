@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom'
-import { ClerkProvider } from '@clerk/clerk-react'
+import { ClerkProvider, SignedIn, UserButton } from '@clerk/clerk-react'
 import './App.css'
 import { Toaster } from './components/ui/toaster'
 
@@ -18,14 +18,14 @@ function App() {
     publishableKey={PUBLISHABLE_KEY}
   > 
   <header className="header">
-        <div style={{display: 'flex', justifyContent:'space-between'}}>
+        <div style={{display: 'flex', justifyContent:'space-between', marginBottom: '1rem'}}>
           <div>
-            <p>Clad Logistics</p>
+            <p>Tecnoflow</p>
           </div>
-          {/* <SignedIn>
+           <SignedIn>
             <UserButton />
           </SignedIn>
-          <SignedOut>
+          {/*<SignedOut>
             <Link to="/sign-in">Iniciar sesión</Link>
           </SignedOut> */}
         </div>

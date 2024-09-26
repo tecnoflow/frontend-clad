@@ -16,6 +16,7 @@ import { useAuth, useUser } from "@clerk/clerk-react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
+const VITE_ENDPOINT = import.meta.env.VITE_ENDPOINT
 
 const formSchema = z.object({
     razonSocial: z.string().min(2).max(60),
@@ -42,7 +43,6 @@ export const MainForm = () => {
     const { id } = useParams();
     const { toast } = useToast()
     const data = useUser();
-    console.log(data)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -50,6 +50,7 @@ export const MainForm = () => {
         navigate("/sign-in")
     }
     }, [isLoaded])
+    
     
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -101,7 +102,7 @@ export const MainForm = () => {
               description: "Puede abandonar la página",
             })
             //TODO: SEND CLAD ID
-            const response = await fetch(`https://tf-flow-70f13740be3b.herokuapp.com/api/client/66f29c225229ba5d6f7444fe`, {
+            const response = await fetch(`${VITE_ENDPOINT}/66f29c225229ba5d6f7444fe`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -110,6 +111,7 @@ export const MainForm = () => {
             });
             const result = await response.json();
             console.log(result)
+            navigate("/");
         }
       }
     
@@ -118,6 +120,11 @@ export const MainForm = () => {
     <>
     <h1 style={{marginBottom:'15', fontWeight:'bold'}}>Formulario de cliente {id}</h1>
     <p>Con los datos siguientes vamos a realizar a la creación de la documentación requerida para el puerto</p>
+    <Button variant={'link'}>
+          <a className="flex" href={`/`}>
+                        <span className="ml-2 text-red-400">Atras</span>  
+                        </a>
+          </Button>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField
@@ -354,6 +361,7 @@ export const MainForm = () => {
         />
 
 
+        
         <Button type="submit">Guardar y generar</Button>
       </form>
     </Form>
