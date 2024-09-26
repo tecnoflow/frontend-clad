@@ -14,7 +14,7 @@ function App() {
   return (
     <ClerkProvider
     routerPush={(to) => navigate(to)}
-    routerReplace={(to) => navigate('/', { replace: true })}
+    routerReplace={() => navigate('/', { replace: true })}
     publishableKey={PUBLISHABLE_KEY}
   > 
   <header className="header">
